@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>Restaurant Reviews</title>
@@ -21,21 +21,21 @@
 
   <main id="maincontent" role="main">
 
-    <section id="map-container" aria-label="mapbox map">
-      <div id="map" role="application"></div>
+    <section id="map-container" role="application" aria-label="Mapbox Maps">
+      <div id="map" role="application" aria-labelledby="map-container"></div>
     </section>
 
-    <section>
+    <section role="contentinfo" aria-label="Restaurants Found In Your Area">
       <div  id="filter-options" class="filter-options">
         <h2 id="filter" tabindex="0">Filter Results</h2>
 
         <label for="neighborhoods-select">Select Neighborhood</label>
-        <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
+        <select aria-label="Filter by neighborhood" id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
         </select>
 
         <label for="cuisines-select">Select Cuisine</label>
-        <select id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
+        <select aria-label="Filter by cuisine" id="cuisines-select" name="cuisines" onchange="updateRestaurants()">
           <option value="all">All Cuisines</option>
         </select>
 
