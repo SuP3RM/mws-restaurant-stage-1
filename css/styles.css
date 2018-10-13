@@ -493,6 +493,8 @@ ul #review-list {
   }
 }
 
+/* ===== ARIA Skip Link ===== */
+
 .skip-link {
   position: absolute;
   top: -100px;

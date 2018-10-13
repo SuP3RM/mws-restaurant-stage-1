@@ -5,7 +5,7 @@ const contentImgsCache = appName + '-images';
 
 let allCaches = [staticCacheName, contentImgsCache];
 
-/** At Service Worker Install time, cache all static assets */
+/* Adds service worker install time and caches all static assets */
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(staticCacheName).then(function(cache) {
@@ -24,7 +24,7 @@ self.addEventListener('install', function(event) {
   );
 });
 
-/** At Service Worker Activation, Delete previous caches, if any */
+/* Activation of service worker and deletes previous caches if any */
 self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
@@ -40,21 +40,18 @@ self.addEventListener('activate', function(event) {
   );
 });
 
-/** Hijack fetch requests and respond accordingly */
+/* "Hijacking" fetch requests and responding to it */
 self.addEventListener('fetch', function(event) {
   const requestUrl = new URL(event.request.url);
 
-  // only highjack request made to our app (not mapbox maps or leaflet, for example)
+  // only highjack request made to our app
   if (requestUrl.origin === location.origin) {
 
-    // Since requests made to restaurant.html have search params (like ?id=1), the url can't be used as the
-    // key to access the cache, so just respondWith restaurant.html if pathname startsWith '/restaurant.html'
     if (requestUrl.pathname.startsWith('/restaurant.html')) {
       event.respondWith(caches.match('/restaurant.html'));
       return; // Done handling request, so exit early.
     }
 
-    // If the request pathname starts with /img, then we need to handle images.
     if (requestUrl.pathname.startsWith('/img')) {
       event.respondWith(serveImage(event.request));
       return; // Done handling request, so exit early.
@@ -70,10 +67,6 @@ self.addEventListener('fetch', function(event) {
 
 function serveImage(request) {
   let imageStorageUrl = request.url;
-
-  // Make a new URL with a stripped suffix and extension from the request url
-  // i.e. /img/1-medium.jpg  will become  /img/1
-  // we'll use this as the KEY for storing image into cache
   imageStorageUrl = imageStorageUrl.replace(/-small\.\w{3}|-medium\.\w{3}|-large\.\w{3}/i, '');
 
   return caches.open(contentImgsCache).then(function(cache) {
