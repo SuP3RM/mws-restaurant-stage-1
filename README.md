@@ -16,4 +16,4 @@ In a terminal, check the version of Python you have: `python -V`. If you have Py
 
 ### Thank you!
 
-Thanks to Alexandro Perez's walkthrough (<https://github.com/AlexandroPerez>) and Matthew Cranford's (<https://matthewcranford.com/restaurant-reviews-app-walkthrough-part-4-service-workers/>) to help during the service worker part of the project. Both helped me tremendously! 
+Thanks to Alexandro Perez's walkthrough (https://alexandroperez.github.io/mws-walkthrough/?1.1.introduction) for guidance, and Matthew Cranford's (<https://matthewcranford.com/restaurant-reviews-app-walkthrough-part-4-service-workers/>) to help during the service worker part of the project. Both helped me tremendously! 
